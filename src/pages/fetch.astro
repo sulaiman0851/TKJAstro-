@@ -1,0 +1,47 @@
+---
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Gambar</title>
+</head>
+<body>
+  <h1>Download Gambar</h1>
+  <form id="imageForm">
+    <label for="imageUrl">Masukkan URL Gambar:</label><br>
+    <input type="url" id="imageUrl" name="imageUrl" required><br><br>
+    <button type="submit">Download Gambar</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    const form = document.getElementById('imageForm');
+    const resultDiv = document.getElementById('result');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const imageUrl = form.imageUrl.value;
+      
+      try {
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'gambar.jpg';
+        link.textContent = 'Klik untuk mengunduh gambar';
+        resultDiv.innerHTML = '';
+        resultDiv.appendChild(link);
+      } catch (error) {
+        resultDiv.textContent = 'Terjadi kesalahan. Pastikan URL gambar valid dan dapat diakses.';
+      }
+    });
+  </script>
+</body>
+</html>

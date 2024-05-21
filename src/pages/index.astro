@@ -1,0 +1,230 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import LinkButton from "@components/LinkButton.astro";
+import Hr from "@components/Hr.astro";
+import Card from "@components/Card";
+import Socials from "@components/Socials.astro";
+import getSortedPosts from "@utils/getSortedPosts";
+import { SOCIALS } from "@config";
+
+// import AutoPlayAudio from "@components/AutoPlayAudio.jsx";
+
+const posts = await getCollection("blog");
+
+const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+const socialCount = SOCIALS.filter((social) => social.active).length;
+---
+
+<Layout>
+  <Header />
+  <!-- <AutoPlayAudio /> -->
+  <main id="main-content">
+    <section id="hero">
+      <h1>TKJ</h1>
+      <a
+        target="_blank"
+        href="/rss.xml"
+        class="rss-link"
+        aria-label="rss feed"
+        title="RSS Feed"
+      >
+        <audio autoplay>
+          <source src="renegade.mp3" type="audio/mp3" />
+        </audio>
+
+        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
+          ><path
+            d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
+          ></path><path
+            d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
+          ></path><circle cx="6" cy="18" r="2"></circle>
+        </svg>
+        <span class="sr-only">RSS Feed</span>
+      </a>
+
+      <p>
+        Teknik Komputer dan Jaringan (TKJ) adalah salah satu program keahlian di
+        bidang teknologi informasi dan komunikasi (TIK) yang banyak diminati di
+        sekolah menengah kejuruan (SMK). Program ini bertujuan untuk
+        mempersiapkan siswa dalam menguasai teknologi komputer dan jaringan
+        serta memahami prinsip-prinsip dasar komunikasi data.
+      </p>
+      <br />
+      <p>
+        Dalam kurikulum TKJ, siswa akan belajar tentang berbagai aspek teknis
+        yang berkaitan dengan komputer dan jaringan, mulai dari perakitan dan
+        perawatan komputer, instalasi sistem operasi, konfigurasi jaringan,
+        hingga keamanan sistem informasi. Mereka juga akan mempelajari bahasa
+        pemrograman, basis data, dan aplikasi perangkat lunak yang umum
+        digunakan dalam dunia teknologi informasi.
+      </p>
+      <br />
+      <p>
+        Selain keterampilan teknis, program TKJ juga menekankan pada
+        pengembangan keterampilan sosial dan profesional siswa. Mereka diajarkan
+        untuk bekerja dalam tim, berkomunikasi secara efektif, dan memecahkan
+        masalah secara kreatif. Kemampuan ini sangat penting dalam dunia kerja,
+        di mana TKJ membuka peluang karier di berbagai bidang, seperti teknisi
+        komputer, administrator jaringan, atau pengembang perangkat lunak.
+      </p>
+      <br />
+      <p>
+        TKJ juga mengikuti perkembangan teknologi terkini, sehingga siswa akan
+        terus diperkenalkan pada inovasi-inovasi terbaru dalam dunia komputer
+        dan jaringan. Hal ini membantu mereka untuk tetap relevan dan siap
+        menghadapi tantangan dalam industri yang terus berkembang pesat.
+      </p>
+      <br />
+      <p>
+        Secara keseluruhan, program TKJ memberikan landasan yang kuat bagi siswa
+        yang ingin meniti karier di bidang teknologi informasi dan komunikasi.
+        Dengan kombinasi antara keterampilan teknis, sosial, dan profesional,
+        lulusan TKJ siap bersaing dalam pasar kerja yang semakin kompetitif dan
+        dinamis.
+      </p>
+
+      {
+        // only display if at least one social link is enabled
+        socialCount > 0 && (
+          <div class="social-wrapper">
+            <div class="social-links">Social Links:</div>
+            <Socials />
+          </div>
+        )
+      }
+    </section>
+
+    <Hr />
+
+    <section id="hero">
+      <h1>How I Learn JavaScript?</h1>
+      <p>
+        <a href="https://developer.mozilla.org/en-US/
+      "
+          >https://developer.mozilla.org/en-US/</a
+        >
+      </p>
+    </section>
+
+    <Hr />
+
+    {
+      featuredPosts.length > 0 && (
+        <>
+          <section id="featured">
+            <h2>Featured</h2>
+            <ul>
+              {featuredPosts.map(({ data, slug }) => (
+                <Card
+                  href={`/posts/${slug}/`}
+                  frontmatter={data}
+                  secHeading={false}
+                />
+              ))}
+            </ul>
+          </section>
+
+          {recentPosts.length > 0 && <Hr />}
+        </>
+      )
+    }
+
+    {
+      recentPosts.length > 0 && (
+        <section id="recent-posts">
+          <h2>Recent Posts</h2>
+          <ul>
+            {recentPosts.map(
+              ({ data, slug }, index) =>
+                index < 4 && (
+                  <Card
+                    href={`/posts/${slug}/`}
+                    frontmatter={data}
+                    secHeading={false}
+                  />
+                )
+            )}
+          </ul>
+        </section>
+      )
+    }
+
+    <div class="all-posts-btn-wrapper">
+      <LinkButton href="/posts/">
+        All Posts
+        <svg xmlns="http://www.w3.org/2000/svg"
+          ><path
+            d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+          ></path>
+        </svg>
+      </LinkButton>
+    </div>
+
+    {
+      featuredPosts.length > 0 && (
+        <>
+          <section id="featured">
+            <h2>Fitur Aplikasi X TKJ 2</h2>
+            <ul>
+              {featuredPosts.map(({ data, slug }) => (
+                <Card
+                  href={`/posts/${slug}/`}
+                  frontmatter={data}
+                  secHeading={false}
+                />
+              ))}
+            </ul>
+          </section>
+
+          {recentPosts.length > 0 && <Hr />}
+        </>
+      )
+    }
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ===== Hero Section ===== */
+  #hero {
+    @apply pb-6 pt-8;
+  }
+  #hero h1 {
+    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+  }
+  #hero .rss-link {
+    @apply mb-6;
+  }
+  #hero .rss-icon {
+    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
+  }
+  #hero p {
+    @apply my-2;
+  }
+  .social-wrapper {
+    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
+  }
+  .social-links {
+    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
+  }
+
+  /* ===== Featured & Recent Posts Sections ===== */
+  #featured,
+  #recent-posts {
+    @apply pb-6 pt-12;
+  }
+  #featured h2,
+  #recent-posts h2 {
+    @apply text-2xl font-semibold tracking-wide;
+  }
+  .all-posts-btn-wrapper {
+    @apply my-8 text-center;
+  }
+</style>

@@ -1,0 +1,90 @@
+---
+import Header from "@components/Header.astro";
+import Layout from "@layouts/Layout.astro";
+import Footer from "@components/Footer.astro";
+
+// case "ytmp3":
+//       case "ytaudio":
+//         let xeonaudp3 = require("./lib/ytdl");
+//         if (args.length < 1 || !isUrl(text) || !xeonaudp3.isYTUrl(text))
+//           return replyLinkGc(
+//             `Where's the yt link?\nExample: ${
+//               prefix + command
+//             } https://youtube.com/shorts/YQf-vMjDuKY?feature=share`
+//           );
+//         let audio = await xeonaudp3.mp3(text);
+//         await OctopusBotzz.sendMessage(
+//           m.chat,
+//           {
+//             audio: fs.readFileSync(audio.path),
+//             mimetype: "audio/mp4",
+//             ptt: true,
+//             contextInfo: {
+//               externalAdReply: {
+//                 title: audio.meta.title,
+//                 body: botname,
+//                 thumbnail: await fetchBuffer(audio.meta.image),
+//                 mediaType: 2,
+//                 mediaUrl: text,
+//               },
+//             },
+//           },
+//           { quoted: m }
+//         );
+//         await fs.unlinkSync(audio.path);
+//         break;
+---
+
+<Layout>
+  <Header />
+  <main>
+    <h1>YTDL</h1>
+    <form method="POST">
+      <input type="text" />
+      <button>post link</button>
+    </form>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  h1 {
+    font-weight: bold;
+    font-size: 200px;
+    animation: text;
+    text-shadow:
+      0 0 5px #fff,
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 20px #0ff,
+      0 0 30px #0ff,
+      0 0 40px #0ff;
+    transition: text-shadow 0.4s ease;
+    cursor: auto;
+    background: tomato;
+  }
+
+  h1:hover {
+    text-shadow:
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 30px #fff,
+      0 0 40px #0ff,
+      0 0 70px #0ff,
+      0 0 80px #0ff,
+      0 0 100px #0ff,
+      0 0 150px #0ff,
+      0 0 250px #0ff;
+    animation: neon-flicker 1.5s infinite alternate;
+  }
+
+  @keyframes text {
+    10% {
+    }
+  }
+</style>
