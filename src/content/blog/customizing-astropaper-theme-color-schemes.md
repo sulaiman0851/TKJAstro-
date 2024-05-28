@@ -1,5 +1,5 @@
 ---
-author: Sat Naing
+author: Sulaiman Majid
 pubDatetime: 2022-09-25T15:20:35Z
 title: Customizing AstroPaper theme color schemes
 featured: false
