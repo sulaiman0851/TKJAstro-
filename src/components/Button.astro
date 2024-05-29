@@ -1,0 +1,27 @@
+---
+import "./css/Button.css";
+
+export interface Props {
+  href: string;
+  name: string;
+  type?: string;
+}
+
+const { href, name, type } = Astro.props;
+---
+
+{
+  type === "" || type === "1" ? (
+    <button class="button" role="button">
+      <a href={href}>{name}</a>
+    </button>
+  ) : type === "2" ? (
+    <button class="button2" role="button">
+      <a href={href}>{name}</a>
+    </button>
+  ) : (
+    <button class="button" role="button">
+      <a href={href}>{name}</a>
+    </button>
+  )
+}
