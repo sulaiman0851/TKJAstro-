@@ -3,6 +3,17 @@ import Header from "@components/Header.astro";
 import Layout from "@layouts/Layout.astro";
 import Card from "@components/Card";
 import Footer from "@components/Footer.astro";
+import Hr from "@components/Hr.astro";
+
+import { getCollection } from "astro:content";
+import getSortedPosts from "@utils/getSortedPosts";
+
+const features = await getCollection("features");
+const sortedFeatures = getSortedPosts(features);
+const featuredPosts = sortedFeatures.filter(({ data }) => data.featured);
+const recentPosts = sortedFeatures.filter(({ data }) => !data.featured);
+
+// const socialCount = SOCIALS.filter((social) => social.active).length;
 
 // Components
 import Button from "@components/Button.astro";
@@ -12,9 +23,44 @@ import Button from "@components/Button.astro";
   <Header activeNav="features" />
   <h1>Fitur - fitur website X TKJ 2</h1>
   <main>
-    <Button href="/features/ai" name="Groq AI" type="2" />
+    <Button href="/features/ai" name="AI" type="2" />
+
+    <div class="card">
+      <h2 class="card-title">Judul Card</h2>
+      <div class="card-content">
+        <!-- Isi konten dari folder akan dimasukkan di sini -->
+      </div>
+    </div>
+    <div class="card">
+      <h2 class="card-title">Judul Card</h2>
+      <div class="card-content">
+        <!-- Isi konten dari folder akan dimasukkan di sini -->
+      </div>
+    </div>
+
+    {
+      featuredPosts.length > 0 && (
+        <>
+          <section id="featured">
+            <h2>Featured</h2>
+            <ul>
+              {featuredPosts.map(({ data, slug }) => (
+                <Card
+                  href={`/posts/${slug}/`}
+                  frontmatter={data}
+                  secHeading={false}
+                />
+              ))}
+            </ul>
+          </section>
+
+          {recentPosts.length > 0 && <Hr />}
+        </>
+      )
+    }
   </main>
   <!-- <Card href="/features" secHeading={false} /> -->
+
   <Footer />
 </Layout>
 hai
@@ -27,5 +73,33 @@ hai
   h1 {
     font-size: larger;
     font-weight: bolder;
+  }
+
+  .card {
+    width: 300px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+  }
+
+  .card-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .card-content {
+    /* Styling untuk konten dalam card */
+  }
+
+  /* Opsi tambahan untuk gambar */
+  .card-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
   }
 </style>
