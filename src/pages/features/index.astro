@@ -1,22 +1,19 @@
 ---
 import Header from "@components/Header.astro";
 import Layout from "@layouts/Layout.astro";
-import Card from "@components/Card";
 import Footer from "@components/Footer.astro";
-import Hr from "@components/Hr.astro";
-
-import { getCollection } from "astro:content";
-import getSortedPosts from "@utils/getSortedPosts";
-
-const features = await getCollection("features");
-const sortedFeatures = getSortedPosts(features);
-const featuredPosts = sortedFeatures.filter(({ data }) => data.featured);
-const recentPosts = sortedFeatures.filter(({ data }) => !data.featured);
-
 // const socialCount = SOCIALS.filter((social) => social.active).length;
 
 // Components
 import Button from "@components/Button.astro";
+// import Hr from "@components/Hr.astro";
+
+const featureFolders = await Astro.glob("./*");
+const folderNames = featureFolders
+  .filter(
+    (folder) => folder.split("/").pop() !== "index.astro", // Filter out index.astro
+  )
+  .map((folder) => folder.split("/").pop());
 ---
 
 <Layout>
@@ -25,41 +22,20 @@ import Button from "@components/Button.astro";
   <main>
     <Button href="/features/ai" name="AI" type="2" />
 
-    <div class="card">
-      <h2 class="card-title">Judul Card</h2>
-      <div class="card-content">
-        <!-- Isi konten dari folder akan dimasukkan di sini -->
-      </div>
-    </div>
-    <div class="card">
-      <h2 class="card-title">Judul Card</h2>
-      <div class="card-content">
-        <!-- Isi konten dari folder akan dimasukkan di sini -->
-      </div>
-    </div>
+    <Button href="/features/ml" name="ML" type="2" />
 
-    {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>Featured</h2>
-            <ul>
-              {featuredPosts.map(({ data, slug }) => (
-                <Card
-                  href={`/posts/${slug}/`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              ))}
-            </ul>
-          </section>
-
-          {recentPosts.length > 0 && <Hr />}
-        </>
-      )
-    }
+    <ul>
+      {
+        folderNames.map((folderName) => (
+          <li key={folderName}>
+            <a href={`/${folderName}`} class="mini-card">
+              {folderName}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </main>
-  <!-- <Card href="/features" secHeading={false} /> -->
 
   <Footer />
 </Layout>
@@ -73,33 +49,5 @@ hai
   h1 {
     font-size: larger;
     font-weight: bolder;
-  }
-
-  .card {
-    width: 300px;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-  }
-
-  .card-title {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  .card-content {
-    /* Styling untuk konten dalam card */
-  }
-
-  /* Opsi tambahan untuk gambar */
-  .card-content img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 10px;
   }
 </style>

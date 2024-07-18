@@ -9,6 +9,7 @@ import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
 import { SOCIALS } from "@config";
+import { SITE } from "./src/config";
 
 // import AutoPlayAudio from "@components/AutoPlayAudio.jsx";
 
@@ -39,7 +40,8 @@ console.log(randomUser);
   <!-- <AutoPlayAudio /> -->
   <main id="main-content">
     <section id="hero">
-      <h1>TKJ</h1>
+      <h1>{SITE.title}</h1>
+
       <a
         target="_blank"
         href="/rss.xml"
@@ -183,7 +185,7 @@ console.log(randomUser);
       featuredPosts.length > 0 && (
         <>
           <section id="featured">
-            <h2>Fitur Aplikasi X TKJ 2</h2>
+            <h2>Fitur Aplikasi SITE.name</h2>
             <ul>
               {featuredPosts.map(({ data, slug }) => (
                 <Card

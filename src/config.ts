@@ -4,7 +4,7 @@ export const SITE: Site = {
   website: "https://astro-paper.pages.dev/", // replace this with your deployed domain
   author: "Sulaiman Majid",
   desc: "A Technical Class on SMKN 2 Jember",
-  title: "X TKJ 2",
+  title: "XI TKJ 2",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerPage: 3,

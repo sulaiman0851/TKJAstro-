@@ -8,7 +8,7 @@ title: "About Me"
 </div>
 => ilustration of a programmer coding
 
-Sulaiman Majid, X TKJ 2 - 2023 @ [my school website](https://smkn2jember.sch.id)
+Sulaiman Majid, - 2023 @ [my school website](https://smkn2jember.sch.id)
 
 This theme is aimed to be accessible out of the box. Light and dark mode are supported by
 default and additional color schemes can also be configured.
