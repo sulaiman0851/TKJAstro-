@@ -37,11 +37,4 @@ export default defineConfig({
     },
   },
   scopedStyleStrategy: "where",
-  astro: {
-    // Atur Prettier sebagai formatter untuk file .astro
-    format: "prettier",
-  },
-  devToolbar: {
-    enabled: false,
-  },
 });
