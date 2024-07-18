@@ -44,13 +44,13 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "LinkedIn",
-    href: "https://github.com/satnaing/astro-paper",
+    href: "https://www.linkedin.com/in/sulaiman-majid-a28b05281/",
     linkTitle: `${SITE.title} on LinkedIn`,
     active: true,
   },
   {
     name: "Mail",
-    href: "mailto:yourmail@gmail.com",
+    href: "mailto:sulaimanmajid77@gmail.com",
     linkTitle: `Send an email to ${SITE.title}`,
     active: false,
   },
