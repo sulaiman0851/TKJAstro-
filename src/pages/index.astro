@@ -19,19 +19,6 @@ const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
 const socialCount = SOCIALS.filter((social) => social.active).length;
-
-// const res = await fetch("https://9000-idx-express-project-1717137977038.cluster-qpa6grkipzc64wfjrbr3hsdma2.cloudworkstations.dev/api/groq")
-// const data = await res.json()
-//   // .then((response) => response.json())
-//   // .then((data) => data);
-
-// console.log(data);
-
-const response = await fetch("https://randomuser.me/api/");
-const data = await response.json();
-const randomUser = data.results[0];
-
-console.log(randomUser);
 ---
 
 <Layout>
@@ -184,7 +171,7 @@ console.log(randomUser);
       featuredPosts.length > 0 && (
         <>
           <section id="featured">
-            <h2>Fitur Aplikasi SITE.name</h2>
+            <h2>Fitur Aplikasi {SITE.title}</h2>
             <ul>
               {featuredPosts.map(({ data, slug }) => (
                 <Card
