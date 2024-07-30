@@ -43,16 +43,22 @@ export const SOCIALS: SocialObjects = [
     active: true,
   },
   {
+    name: "TikTok",
+    href: "https://tiktok.com/linux_usr",
+    linkTitle: `${SITE.title} on TikTok`,
+    active: true,
+  },
+  {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/sulaiman-majid-a28b05281/",
     linkTitle: `${SITE.title} on LinkedIn`,
-    active: true,
+    active: false,
   },
   {
     name: "Mail",
     href: "mailto:sulaimanmajid77@gmail.com",
     linkTitle: `Send an email to ${SITE.title}`,
-    active: false,
+    active: true,
   },
   {
     name: "Twitter",
@@ -74,7 +80,7 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "WhatsApp",
-    href: "https://github.com/satnaing/astro-paper",
+    href: "wa.me/6281359391296",
     linkTitle: `${SITE.title} on WhatsApp`,
     active: false,
   },
@@ -88,12 +94,6 @@ export const SOCIALS: SocialObjects = [
     name: "Pinterest",
     href: "https://github.com/satnaing/astro-paper",
     linkTitle: `${SITE.title} on Pinterest`,
-    active: false,
-  },
-  {
-    name: "TikTok",
-    href: "https://tiktok.com/linux_usr",
-    linkTitle: `${SITE.title} on TikTok`,
     active: false,
   },
   {

@@ -106,10 +106,17 @@ const socialCount = SOCIALS.filter((social) => social.active).length;
     <section id="hero">
       <h1>How I Learn JavaScript?</h1>
       <p>
-        <a href="https://developer.mozilla.org/en-US/
-      "
-          >https://developer.mozilla.org/en-US/</a
-        >
+        <ul>
+          <li class="list">
+            <a href="https://developer.mozilla.org/
+            "
+              >https://developer.mozilla.org/en-US/</a
+            >
+          </li>
+          <li class="list">
+            <a href="https://www.w3schools.com/">https://www.w3schools.com/</a>
+          </li>
+        </ul>
       </p>
     </section>
 
@@ -227,5 +234,19 @@ const socialCount = SOCIALS.filter((social) => social.active).length;
   }
   .all-posts-btn-wrapper {
     @apply my-8 text-center;
+  }
+
+  ul {
+    padding: 0;
+  }
+  .list {
+    list-style: none;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+
+  .list:hover {
+    text-decoration: underline;
   }
 </style>
