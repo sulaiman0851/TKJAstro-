@@ -1,0 +1,18 @@
+---
+// src/components/Audio.astro
+---
+
+<audio id="autoplay-audio" src="/audio/audio.mp3" autoplay>
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("autoplay-audio");
+    if (audio) {
+      audio.play().catch((error) => {
+        console.error("Audio playback failed:", error);
+      });
+    }
+  });
+</script>
